@@ -1,0 +1,94 @@
+public class Veiculo {
+
+    // Atributos privados
+    private String placa;
+    private String marca;
+    private String modelo;
+    private int ano;
+    private double valor;
+
+    // Construtor
+    public Veiculo(String placa, String marca, String modelo, int ano, double valor) {
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.valor = valor;
+    }
+
+    // Getters e Setters
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    // Método para calcular o IPVA (4% do valor do veículo)
+    public double calcularIpva() {
+        return valor * 0.04;
+    }
+
+    // Método para exibir as informações do veículo
+    public void exibirInfo() {
+        System.out.println("Placa: " + placa);
+        System.out.println("Marca: " + marca);
+        System.out.println("Modelo: " + modelo);
+        System.out.println("Ano: " + ano);
+        System.out.println(String.format("Valor: R$ %.2f", valor));
+        System.out.println(String.format("IPVA: R$ %.2f", calcularIpva()));
+        System.out.println("--------------------------------");
+    }
+
+    // Método principal para testar a classe
+    public static void main(String[] args) {
+
+        // Criando vários veículos
+        Veiculo v1 = new Veiculo("ABC-1234", "Toyota", "Corolla", 2020, 80000);
+        Veiculo v2 = new Veiculo("DEF-5678", "Honda", "Civic", 2019, 75000);
+        Veiculo v3 = new Veiculo("GHI-9012", "Fiat", "Argo", 2022, 65000);
+        Veiculo v4 = new Veiculo("JKL-3456", "Chevrolet", "Onix", 2018, 55000);
+        Veiculo v5 = new Veiculo("MNO-7890", "Volkswagen", "Golf", 2017, 70000);
+
+        // Exibindo as informações
+        System.out.println("==== LISTA DE VEÍCULOS ====");
+        v1.exibirInfo();
+        v2.exibirInfo();
+        v3.exibirInfo();
+        v4.exibirInfo();
+        v5.exibirInfo();
+    }
+}
