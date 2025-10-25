@@ -1,0 +1,45 @@
+// Classe Caminhao herdando de Veiculo
+class Caminhao extends Veiculo {
+
+    private double capacidadeCarga; // em toneladas
+
+    // Construtor
+    public Caminhao(String placa, String marca, String modelo, int ano, double valor, double capacidadeCarga) {
+        super(placa, marca, modelo, ano, valor);
+        this.capacidadeCarga = capacidadeCarga;
+    }
+
+    // Getter e Setter
+    public double getCapacidadeCarga() {
+        return capacidadeCarga;
+    }
+
+    public void setCapacidadeCarga(double capacidadeCarga) {
+        this.capacidadeCarga = capacidadeCarga;
+    }
+
+    // Sobrescreve o cálculo do IPVA:
+    // até 5 toneladas → 2%, acima de 5 → 3%
+    @Override
+    public double calcularIpva() {
+        if (capacidadeCarga <= 5.0) {
+            return getValor() * 0.02;
+        } else {
+            return getValor() * 0.03;
+        }
+    }
+
+    // Exibir informações completas
+    @Override
+    public void exibirInfo() {
+        System.out.println("Tipo: Caminhão");
+        System.out.println("Placa: " + getPlaca());
+        System.out.println("Marca: " + getMarca());
+        System.out.println("Modelo: " + getModelo());
+        System.out.println("Ano: " + getAno());
+        System.out.println(String.format("Capacidade de carga: %.1f toneladas", capacidadeCarga));
+        System.out.println(String.format("Valor: R$ %.2f", getValor()));
+        System.out.println(String.format("IPVA: R$ %.2f", calcularIpva()));
+        System.out.println("--------------------------------");
+    }
+}
