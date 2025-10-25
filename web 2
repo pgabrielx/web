@@ -1,0 +1,139 @@
+// Classe base Veiculo
+class Veiculo {
+
+    // Atributos privados
+    private String placa;
+    private String marca;
+    private String modelo;
+    private int ano;
+    private double valor;
+
+    // Construtor
+    public Veiculo(String placa, String marca, String modelo, int ano, double valor) {
+        this.placa = placa;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.ano = ano;
+        this.valor = valor;
+    }
+
+    // Getters e Setters
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public int getAno() {
+        return ano;
+    }
+
+    public void setAno(int ano) {
+        this.ano = ano;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    // Método para calcular o IPVA (4% do valor)
+    public double calcularIpva() {
+        return valor * 0.04;
+    }
+
+    // Método para exibir informações
+    public void exibirInfo() {
+        System.out.println("Placa: " + placa);
+        System.out.println("Marca: " + marca);
+        System.out.println("Modelo: " + modelo);
+        System.out.println("Ano: " + ano);
+        System.out.println(String.format("Valor: R$ %.2f", valor));
+        System.out.println(String.format("IPVA: R$ %.2f", calcularIpva()));
+        System.out.println("--------------------------------");
+    }
+}
+
+// Classe Carro herdando de Veiculo
+class Carro extends Veiculo {
+
+    // Atributo adicional
+    private int numeroPortas;
+
+    // Construtor
+    public Carro(String placa, String marca, String modelo, int ano, double valor, int numeroPortas) {
+        super(placa, marca, modelo, ano, valor);
+        this.numeroPortas = numeroPortas;
+    }
+
+    // Getter e Setter
+    public int getNumeroPortas() {
+        return numeroPortas;
+    }
+
+    public void setNumeroPortas(int numeroPortas) {
+        this.numeroPortas = numeroPortas;
+    }
+
+    // Sobrescrevendo o método calcularIpva() — agora 3,5%
+    @Override
+    public double calcularIpva() {
+        return getValor() * 0.035;
+    }
+
+    // Sobrescrevendo exibirInfo()
+    @Override
+    public void exibirInfo() {
+        System.out.println("Placa: " + getPlaca());
+        System.out.println("Marca: " + getMarca());
+        System.out.println("Modelo: " + getModelo());
+        System.out.println("Ano: " + getAno());
+        System.out.println("Número de portas: " + numeroPortas);
+        System.out.println(String.format("Valor: R$ %.2f", getValor()));
+        System.out.println(String.format("IPVA (3.5%%): R$ %.2f", calcularIpva()));
+        System.out.println("--------------------------------");
+    }
+}
+
+// Classe principal para teste
+public class Main {
+    public static void main(String[] args) {
+
+        System.out.println("==== LISTA DE CARROS ====");
+
+        // Criando apenas carros
+        Carro c1 = new Carro("ABC-1234", "Toyota", "Corolla", 2022, 120000, 4);
+        Carro c2 = new Carro("DEF-5678", "Honda", "Civic", 2021, 110000, 4);
+        Carro c3 = new Carro("GHI-9012", "Fiat", "Argo", 2020, 75000, 4);
+        Carro c4 = new Carro("JKL-3456", "Chevrolet", "Onix", 2019, 65000, 4);
+        Carro c5 = new Carro("MNO-7890", "Volkswagen", "Golf", 2018, 90000, 2);
+
+        // Exibindo informações de cada carro
+        c1.exibirInfo();
+        c2.exibirInfo();
+        c3.exibirInfo();
+        c4.exibirInfo();
+        c5.exibirInfo();
+    }
+}
